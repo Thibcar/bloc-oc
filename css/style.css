@@ -1,0 +1,198 @@
+/****************************/
+/******** CUSTOM CSS ********/
+/****************************/
+*:focus {
+
+outline: none;
+
+}
+
+*::-moz-focus-inner {
+
+border: none;
+
+}
+
+a {
+    
+    text-decoration: none;
+    color: inherit;
+    
+}
+
+/******** Header ********/
+
+/******** Main Navigation ********/
+
+
+#main-nav {
+    position:relative;
+    
+    background: #fff;
+    color : #000;
+    box-shadow: none;    
+    
+}
+
+#main-nav .material-icons {
+    
+    font-size: 4rem;
+    
+}
+
+#main-nav p {
+    
+    font-size:.8rem;
+    line-height: 22px;
+    margin-top: 0;
+    
+}
+
+#display-nav {
+    position:absolute;
+    display: none;
+    background: #000;
+    color: #fff;
+    max-width: 100%;
+    top: 100%;
+}
+
+#display-nav h3 {
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    font-size : 1.3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.nav-wrapper {
+    z-index:1;
+}
+
+.apropos {
+    border: 3px solid #fff;
+    border-radius: 5px;
+}
+
+.left-nav {
+    
+    border-right: 1px solid #fff;
+}
+
+.right-nav  {
+    
+    border-left: 1px solid #fff;
+}
+
+#main-menu {
+    text-align: center;
+    widows: 100%;
+}
+
+#main-menu li{
+    float:none;
+}
+
+#main-menu .material-icons {
+    color:#fff;
+    font-size: 2rem;
+    display:inline-block;
+    vertical-align: middle;
+}
+
+#main-menu span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#site-title {
+    margin: 8rem 0;
+}
+
+h2 a {
+    color : #212121;
+}
+
+#main-content {
+    text-align: center;
+}
+
+.meta {
+    display: inline-block;
+    vertical-align: middle;
+    margin : 0 1rem 0 .5rem;
+}
+
+.meta-data .material-icons {
+     vertical-align: middle;
+}
+
+.article {
+    text-align: left;
+}
+
+.read-more {
+    margin : 2rem 0;
+}
+
+.footer {
+    width:100%;
+    color:#fff;
+    padding: 4rem;
+    margin-top: 3rem;
+}
+
+
+/********** comments **********/
+
+#comments-area {
+    margin : 2rem 0;
+    padding : 1rem;
+    background : #eee;
+}
+
+.gravatar {
+    
+    border-radius: 100%;
+    margin: .4rem 0;
+}
+
+#com-infos {
+    border-right: 1px solid #fff;
+    
+}
+
+#com {
+    
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    
+}
+
+.row-com {
+    border-bottom: 1px solid #fff;
+}
+
+/********** ADMIN PANEL **********/
+
+#admin-menu {
+    color:#fff;
+    position:fixed;
+    top: 0;
+    height: 100%;
+    padding-top: 80px;
+}
+
+#admin-menu h3 {
+    font-size: 1.4rem;
+}
+
+#admin-menu ul {
+    padding-left : 1rem;
+}
+
+#admin-content {
+    float: none;
+}
+
+
