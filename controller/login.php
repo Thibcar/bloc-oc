@@ -14,6 +14,11 @@ if(isset($_POST['login'])) {
 }
 
 // validation de la connexion
+/**
+ * @param $username
+ * @param $password
+ * @param $remember
+ */
 function login_validation($username, $password, $remember)
 {
     $errors = [];
@@ -39,6 +44,12 @@ function login_validation($username, $password, $remember)
 }
 
 // connexion de l'utilisateur
+/**
+ * @param $username
+ * @param $password
+ * @param $remember
+ * @return bool
+ */
 function get_login_user($username, $password, $remember)
 {
     if(login_user($username))

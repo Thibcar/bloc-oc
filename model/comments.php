@@ -1,5 +1,28 @@
 <?php // gère toutes les requêtes concernant les commentaires
 
+// fonction de récupération des options
+
+function get_options($name)
+{
+    $con = getBdd();
+    $req = $con->prepare("SELECT * FROM options WHERE option_name = :option_name");
+    $req -> bindParam(':option_name', $name, PDO::PARAM_STR);
+    $req -> execute();
+    $options = $req->fetch();
+    $req->closeCursor();
+    return $options;
+}
+
+// update les options de modération
+function update_options($name, $value)
+{
+    $con = getBdd();
+    $req = $con -> prepare("UPDATE options SET  option_value = :option_value WHERE option_name = :option_name");
+    $req -> bindParam(':option_value', $value, PDO::PARAM_INT );
+    $req -> bindParam(':option_name', $name, PDO::PARAM_STR );
+    $req -> execute();
+    $req -> closeCursor();
+}
 
 
 // récupérer les commentaires pour l'affichage sous les articles
@@ -22,10 +45,10 @@ function get_comments_count($the_post_id) {
 
 //ajouter des commentaires depuis le formulaire
 
-function add_comment($name, $email, $message, $the_post_id){
+function add_comment($name, $email, $message, $the_post_id, $com_statut){
     $con = getBdd();
-    $req = $con->prepare("INSERT INTO comments (com_author, com_author_email, com_message, com_date, com_post_id, com_statut) VALUES (:name, :email, :message, now(), :post_id, 0)");
-    $req->execute(['name' => $name, 'email' => $email, 'message' => $message, 'post_id' => $the_post_id]); 
+    $req = $con->prepare("INSERT INTO comments (com_author, com_author_email, com_message, com_date, com_post_id, com_statut) VALUES (:auth_name, :email, :message, now(), :post_id, :com_statut)");
+    $req->execute(['auth_name' => $name, 'email' => $email, 'message' => $message, 'post_id' => $the_post_id, 'com_statut' => $com_statut]);
 }
 
 // récupérer les commentaires pour l'administration

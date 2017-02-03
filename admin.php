@@ -68,6 +68,22 @@ if(isset($_POST['edit_post']))
     }
 }
 
+//modération des commentaires
+if(isset($_POST['moderate_comments']))
+{
+    $name = "moderate";
+    if(isset($_POST['moderate']))
+    {
+        $value = 1;
+    }
+    else
+    {
+        $value = 0;
+    }
+
+    update_options($name, $value);
+    header("Location: admin.php?section=all_comments");
+}
 
 //changer le statut d'un commentaire
 if(isset($_GET['com_statut']) && (isset($_GET['com_id']))) 

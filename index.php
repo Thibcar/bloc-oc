@@ -30,13 +30,32 @@ if(isset($_POST['submit_comment']))
     }
     else
     {
+
         $the_post_id = $_POST['post_id'];
         $name = $_POST['name'];
         $email = $_POST['email'];
         $message = $_POST['message'];
+        //vérifier si il y a modération des commentaires
+        $options = get_options("moderate");
+        $moderate = $options['option_value'];
+        if($moderate == 0) {
+            $com_statut = 1;
+        }
+        elseif($moderate == 1)
+        {
+            $com_statut = 0;
+        }
 
-        add_comment($name, $email, $message, $the_post_id);
-        $message = "<div class='green'>Votre commentaire est en attente de modération</div>";
+        add_comment($name, $email, $message, $the_post_id, $com_statut);
+
+        if($com_statut == 1){
+            $message = "<div class='green'>Votre commentaire a bien été enregistré</div>";
+        }
+        else
+        {
+            $message = "<div class='green'>Votre commentaire est en attente de modération</div>";
+        }
+
         set_message($message);
 
         header("Location: index.php?type=post&post_id={$the_post_id}#comments-area");

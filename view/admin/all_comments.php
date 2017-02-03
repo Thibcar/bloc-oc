@@ -2,7 +2,28 @@
 <?php ob_start(); ?>
 <?php display_message(); ?>
 <?php generate_token(); ?>
+    <div>
+        <h4>Souhaitez-vous modérer les commentaires ?</h4>
+        <form action="admin.php" method="post">
+            <div class="switch">
+                <label>
+                    Non
+                    <?php $options = get_options("moderate");
+                    if($options['option_value'] == 1) : ?>
+                    <input type="checkbox" name="moderate" checked>
+                    <?php else : ?>
+                    <input type="checkbox" name="moderate">
+                    <?php endif; ?>
+
+                    <span class="lever"></span>
+                    Oui
+                </label>
+            </div>
+            <input type="submit" name="moderate_comments" value="Valider">
+        </form>
+    </div>
    <table class="striped">
+            </div>
     <thead>
         <tr>
             <th>Id</th>
