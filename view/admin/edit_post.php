@@ -3,6 +3,7 @@
 <?php $users = get_users(); ?>
 <?php generate_token(); ?>
 <?php display_message(); ?>
+<h3>Modifiez votre article</h3>
 <form action="admin.php" method="post" class="col s12">
     <div class="row">
         <div class="col s6">

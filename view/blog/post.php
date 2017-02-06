@@ -19,24 +19,25 @@
 <div class="clearfix"></div>
 <section id="comments-area">
     <?php display_message(); ?>
+
     <h3>Laisser un commentaire :</h3>
 
     <div class="row">
 
-        <form action="index.php" method="post" class="col s12">
+        <form action="index.php?type=post&post_id=<?= $the_post_id; ?>" method="post" class="col s12">
             <div class="row">
                 <div class="input-field col s6">
-                    <input type="text" id="name" name="name" class="validate">
+                    <input type="text" id="name" name="name" class="validate" value="<?= $name; ?>">
                     <label for="name">Nom</label>
                 </div>
                 <div class="input-field col s6">
-                    <input type="email" id="email" name="email" class="validate">
+                    <input type="email" id="email" name="email" class="validate" value="<?= $email; ?>">
                     <label for="email">Email</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea name="message" id="message" class="materialize-textarea" required></textarea>
+                    <textarea name="comment" id="comment" class="materialize-textarea" required><?= $comment; ?></textarea>
                     <label for="comment">Votre commentaire</label>
                 </div>
                 <input type="hidden" name="post_id" id="post_id" value="<?= $_GET['post_id']; ?>">
