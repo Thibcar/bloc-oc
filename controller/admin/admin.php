@@ -28,7 +28,6 @@ if(isset($_POST['submit'])) {
     }
     else
     {
-
         $message = "<div class='red'>Veuillez-renseigner tous les champs du formulaire</div>";
         set_message($message);
         header("Location: admin.php?section=add_post");
