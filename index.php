@@ -34,6 +34,9 @@ else
         case "register":
             require "controller/register.php";
             break;
+        default :
+            require "view/blog/404.php";
+            break;
     }
 }
 

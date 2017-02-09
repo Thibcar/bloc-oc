@@ -21,6 +21,12 @@ if(isset($_POST['register']))
     }
 }
 
+/** Validation de l'enregistrement d'un utilisateur
+ * @param $username
+ * @param $email
+ * @param $password
+ * @param $password_confirm
+ */
 function register_validation($username, $email, $password, $password_confirm)
 {
     $errors = [];
@@ -50,7 +56,12 @@ function register_validation($username, $email, $password, $password_confirm)
     }
 }
 
-// enregistrement d'un utilisateur
+
+/** enregistrement d'un utilisateur
+ * @param $username
+ * @param $email
+ * @param $password
+ */
 function get_register_user($username, $email, $password)
 {
     register_user($username, $email, $password);

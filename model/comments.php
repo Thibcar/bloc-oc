@@ -1,7 +1,10 @@
 <?php // gère toutes les requêtes concernant les commentaires
 
-// fonction de récupération des options
 
+/** fonction de récupération des options
+ * @param $name
+ * @return mixed
+ */
 function get_options($name)
 {
     $con = getBdd();
@@ -13,7 +16,11 @@ function get_options($name)
     return $options;
 }
 
-// update les options de modération
+
+/** update les options de modération
+ * @param $name
+ * @param $value
+ */
 function update_options($name, $value)
 {
     $con = getBdd();
@@ -25,7 +32,10 @@ function update_options($name, $value)
 }
 
 
-// récupérer les commentaires pour l'affichage sous les articles
+/** récupérer les commentaires pour l'affichage sous les articles
+ * @param $the_post_id
+ * @return PDOStatement
+ */
 function get_comments($the_post_id){
     $con = getBdd();
     $the_post_id = (int) $the_post_id;
@@ -34,7 +44,11 @@ function get_comments($the_post_id){
     return $comments;    
 }
 
-// récupérer le nombre de commentaires par article
+
+/** récupérer le nombre de commentaires par article
+ * @param $the_post_id
+ * @return int
+ */
 function get_comments_count($the_post_id) {
     $con = getBdd();    
     $req = $con->query("SELECT com_id FROM comments WHERE com_post_id = " . $the_post_id . " AND com_statut = 1");
@@ -43,15 +57,26 @@ function get_comments_count($the_post_id) {
     
 }
 
-//ajouter des commentaires depuis le formulaire
 
+/** ajouter des commentaires depuis le formulaire
+ * @param $name
+ * @param $email
+ * @param $comment
+ * @param $the_post_id
+ * @param $com_statut
+ */
 function add_comment($name, $email, $comment, $the_post_id, $com_statut){
     $con = getBdd();
     $req = $con->prepare("INSERT INTO comments (com_author, com_author_email, com_message, com_date, com_post_id, com_statut) VALUES (:auth_name, :email, :comment, now(), :post_id, :com_statut)");
     $req->execute(['auth_name' => $name, 'email' => $email, 'comment' => $comment, 'post_id' => $the_post_id, 'com_statut' => $com_statut]);
 }
 
-// récupérer les commentaires pour l'administration
+
+/** récupérer les commentaires pour l'administration
+ * @param $offset
+ * @param $limit
+ * @return array
+ */
 function get_all_comments($offset, $limit){
     $con = getBdd();
     $req = $con->prepare("SELECT com_id, com_author, com_author_email, com_message, DATE_FORMAT(com_date, '%d/%m/%Y') AS com_date_fr, com_post_id, com_statut FROM comments ORDER BY com_date DESC LIMIT :offset, :limit");
@@ -63,7 +88,10 @@ function get_all_comments($offset, $limit){
     return $comments;    
 }
 
-//approuver un commentaire
+
+/** approuver un commentaire
+ * @param $the_com_id
+ */
 function approve_comment($the_com_id)
 {
     $con = getBdd();
@@ -72,7 +100,10 @@ function approve_comment($the_com_id)
     $req->closeCursor();
 }
 
-//désapprouver un commentaire
+
+/** désapprouver un commentaire
+ * @param $the_com_id
+ */
 function unapprove_comment($the_com_id)
 {
     $con = getBdd();
@@ -81,7 +112,10 @@ function unapprove_comment($the_com_id)
     $req->closeCursor();
 }
 
-//effacer un commentaire
+
+/** effacer un commentaire
+ * @param $the_com_id
+ */
 function delete_comment($the_com_id)
 {
      $con = getBdd();

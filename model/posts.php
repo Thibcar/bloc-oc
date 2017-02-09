@@ -1,9 +1,10 @@
 <?php // gère toutes les requêtes concernant les articles
 
-/*require_once "model/connexion.php";*/
 
-// récupérer le nombre d'entrées dans la bdd
-function post_count() 
+/** récupérer le nombre d'entrées dans la bdd
+ * @return int
+ */
+function post_count()
 {
     $con = getBdd();
     $req = $con->query("SELECT post_id FROM posts");
@@ -13,8 +14,12 @@ function post_count()
 }
 
 
-//obtenir le contenu des articles pour index.php
-function get_posts ($offset, $limit) 
+/** obtenir le contenu des articles pour index.php
+ * @param $offset
+ * @param $limit
+ * @return array
+ */
+function get_posts ($offset, $limit)
 {
     $con = getBdd();
     $offset = (int) $offset;
@@ -29,7 +34,11 @@ function get_posts ($offset, $limit)
    
 }
 
-//obtenir le contenu d'un article pour son affichage ou son édition
+
+/** obtenir le contenu d'un article pour son affichage ou son édition
+ * @param $the_post_id
+ * @return mixed
+ */
 function get_single_post($the_post_id)
 {
     $con = getBdd();
@@ -39,7 +48,7 @@ function get_single_post($the_post_id)
     $req->execute();
      
     if($req->rowCount() != 1){
-        die("aucun article ne correspond à votre requête");
+        header("Location: index.php?type=404");
     } else {      
         $post = $req ->fetch();
         $req -> closeCursor();
@@ -48,7 +57,11 @@ function get_single_post($the_post_id)
 }
 
 
-//ajouter un article
+/** ajouter un article
+ * @param $post_title
+ * @param $post_content
+ * @param $post_author
+ */
 function add_post($post_title, $post_content, $post_author)
 {
     $con = getBdd();
@@ -58,7 +71,9 @@ function add_post($post_title, $post_content, $post_author)
 }
 
 
-//effacer un article
+/** effacer un article
+ * @param $the_post_id
+ */
 function delete_post($the_post_id)
 {
     $con = getBdd();
@@ -70,7 +85,13 @@ function delete_post($the_post_id)
     $req -> closeCursor();   
 }
 
-function update_post($post_title, $post_author, $post_content,$the_post_id)
+/** Mise à jour d'un post
+ * @param $post_title
+ * @param $post_author
+ * @param $post_content
+ * @param $the_post_id
+ */
+function update_post($post_title, $post_author, $post_content, $the_post_id)
 {
     $con = getBdd();
     $query = "UPDATE posts SET "

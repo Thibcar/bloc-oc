@@ -5,10 +5,10 @@ $posts_number = post_count();
 $pages_number = ceil($posts_number / $per_page);
 
 
-
-
-
-// gère la page d'accueil du blog
+/** gère l'affichage de la page d'accueil du blog
+ * @param $pages_number
+ * @param $per_page
+ */
 function get_index($pages_number, $per_page) {
     $page = get_page();
     // on s'assure que $page est bien un entier compris entre 0 et le nombre de pages    
@@ -46,7 +46,9 @@ function get_index($pages_number, $per_page) {
 }
 
 
-//affichage d'un seul post
+/** affichage d'un seul post et l'ajout des commentaires
+ * @param $the_post_id
+ */
 function single_post($the_post_id) {
     $name         = (isset($_POST['name']) ? $_POST['name'] : null);
     $email        = (isset($_POST['email']) ? $_POST['email'] : null);
@@ -102,7 +104,7 @@ function single_post($the_post_id) {
         {
             $message = "<div class='red'>Veuillez-renseigner tous les champs du formulaire</div>";
             set_message($message);
-            /*header("Location: index.php?type=post&post_id={$the_post_id}#comments-area");*/
+
         }
     }
 
@@ -114,7 +116,10 @@ function single_post($the_post_id) {
     require "view/blog/post.php";
 }
 
-//affichage des commentaires
+
+/** affichage des commentaires
+ * @param $the_post_id
+ */
 function display_comments($the_post_id) {
     $comments = get_comments($the_post_id)->fetchAll();
     foreach($comments as $comment){

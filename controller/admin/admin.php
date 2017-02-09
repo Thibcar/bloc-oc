@@ -141,7 +141,9 @@ if(isset($_POST['delete_com']) && isset($_POST['com_id']))
 }
 
 
-//afficher les articles
+/**
+ * afficher les articles
+ */
 function display_posts_data()
 {
     $per_page = 10;
@@ -168,7 +170,9 @@ function display_posts_data()
 }
 
 
-//éditer un article
+/**
+ * éditer un article
+ */
 function edit_post()
 {
     if(isset($_GET['post_id'])) 
@@ -184,7 +188,10 @@ function edit_post()
     
 }
 
-//récupérer les données des commentaires
+
+/**
+ * récupérer les données des commentaires
+ */
 function display_comments_data()
 {
     $per_page = 10;

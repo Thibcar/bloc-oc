@@ -1,7 +1,9 @@
-<?php 
+<?php
 
 
-// récupère les utilisateurs
+/** récupère les utilisateurs
+ * @return array
+ */
 function get_users()
 {
     $con = getBdd();

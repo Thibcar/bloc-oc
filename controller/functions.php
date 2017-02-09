@@ -1,7 +1,9 @@
 <?php //fonctions utiles à l'ensemble de l'application
 
 
-//enregistre un message informatif
+/** enregistre un message informatif
+ * @param $message
+ */
 function set_message($message)
 {
     if(!empty($message))
@@ -14,7 +16,10 @@ function set_message($message)
     }
 }
 
-//affiche le message informatif
+
+/**
+ * affiche le message informatif
+ */
 function display_message()
 {
     if(isset($_SESSION['message']))
@@ -25,8 +30,11 @@ function display_message()
 }
 
 
-// crée la pagination 
-function pagination ($pages_number, $location) {   
+/** crée la pagination
+ * @param $pages_number
+ * @param $location
+ */
+function pagination ($pages_number, $location) {
     $page = get_page();
     $previous = $page - 1;
     $next     = $page + 1;
@@ -45,7 +53,10 @@ function pagination ($pages_number, $location) {
     }
 }
 
-//récupérer la page
+
+/** récupérer la page
+ * @return int
+ */
 function get_page(){
     if(isset($_GET['page'])) {
         $page = ($_GET['page']);
@@ -55,7 +66,10 @@ function get_page(){
     return $page;    
 }
 
-// vérifie si l'utilisateur est connecté
+
+/** vérifie si l'utilisateur est connecté
+ * @return bool
+ */
 function logged_in()
 {
     if(isset($_SESSION['username']) || isset($_COOKIE['connexion']))
@@ -68,6 +82,9 @@ function logged_in()
     }
 }
 
+/** génère un token
+ * @return string
+ */
 function generate_token()
 {
     $_SESSION['_token'] = bin2hex(openssl_random_pseudo_bytes(16));
@@ -76,6 +93,9 @@ function generate_token()
     return $token;
 }
 
+/** Vérifie le token
+ * @return bool
+ */
 function verify_token()
 {
     if(isset($_SESSION['_token']) && isset($_SESSION['_token_time']) && isset($_POST['_token']))

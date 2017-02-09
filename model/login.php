@@ -1,9 +1,10 @@
 <?php // gère le système de connexion à l'interface d'administration
 
-/*require_once "model/connexion.php";*/
 
-
-// vérifie si un username est déjà pris
+/** vérifie si un username est déjà pris
+ * @param $username
+ * @return bool
+ */
 function username_exists($username)
 {
     $con = getBdd(); 
@@ -19,7 +20,11 @@ function username_exists($username)
     }
 }
 
-// vérifie si un email est déjà enregistré
+
+/** vérifie si un email est déjà enregistré
+ * @param $user_email
+ * @return bool
+ */
 function email_exists($user_email)
 {
     $con = getBdd();
@@ -35,6 +40,11 @@ function email_exists($user_email)
     }    
 }
 
+/** enregistre un utilisateur
+ * @param $username
+ * @param $user_email
+ * @param $password
+ */
 function register_user($username, $user_email, $password)
 {
     $con = getBdd();
@@ -46,6 +56,10 @@ function register_user($username, $user_email, $password)
     $req -> closeCursor();    
 }
 
+/** connecte l'utilisateur
+ * @param $username
+ * @return bool|mixed
+ */
 function login_user($username)
 {
     $con = getBdd();
